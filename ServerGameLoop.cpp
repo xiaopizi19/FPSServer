@@ -3,7 +3,7 @@
 
 bool ServerGameLoop::Init(std::string args[])
 {
-    
+    cout<<"Init..."<<endl;
 }
 
 void ServerGameLoop::Shutdown()
