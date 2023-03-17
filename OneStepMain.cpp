@@ -24,7 +24,6 @@ int main()
 	int timeOffset1 = 0;
 	tmp = clockGetTime(CLOCK_MONOTONIC);
 	timeOffset = tmp.tv_sec*1000+tmp.tv_usec/1000;
-	sleep(1);
 	memset(&tmp,0,sizeof(tmp));
 	tmp = clockGetTime(CLOCK_MONOTONIC);
 	timeOffset1 = tmp.tv_sec*1000+tmp.tv_usec/1000;
