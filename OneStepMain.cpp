@@ -28,7 +28,7 @@ int main()
 	tmp = clockGetTime(CLOCK_MONOTONIC);
 	timeOffset1 = tmp.tv_sec*1000+tmp.tv_usec/1000;
 	cout<<timeOffset1 - timeOffset<<endl;
-        //while(true)
+        
 	StateMachine<ServerState> sm;
 	sm.Add(ServerState::Idle,[](){cout<<"Enter idle\n";},
 	[](){cout<<"Update Idle\n";},[](){cout<<"Leave Idle\n";});
