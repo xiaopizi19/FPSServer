@@ -29,17 +29,6 @@ int main()
 	timeOffset1 = tmp.tv_sec*1000+tmp.tv_usec/1000;
 	cout<<timeOffset1 - timeOffset<<endl;
         
-	StateMachine<ServerState> sm;
-	sm.Add(ServerState::Idle,[](){cout<<"Enter idle\n";},
-	[](){cout<<"Update Idle\n";},[](){cout<<"Leave Idle\n";});
-		
-	sm.Add(ServerState::Loading,[](){cout<<"Enter Loading\n";},
-	[](){cout<<"Update Loading\n";},[](){cout<<"Leave Loading\n";});
-	sm.SwitchTo(ServerState::Idle);
-	sm.Update();
-	sm.SwitchTo(ServerState::Loading);
-	sm.Update();
-	sm.ShutDown();
-	cout<<"End..."<<endl;
+	
 	return 0;
 }
