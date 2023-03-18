@@ -9,7 +9,7 @@ using namespace std;
 class ServerGameLoop : public IGameLoop
 {
 public:
-	bool Init(std::string args[]);
+	bool Init(string args);
 	void Shutdown();
 	void Update();
 	void FixedUpdate();

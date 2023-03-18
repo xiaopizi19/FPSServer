@@ -1,9 +1,14 @@
 #include "ServerGameLoop.h"
 
 
-bool ServerGameLoop::Init(std::string args[])
+ServerGameLoop::~ServerGameLoop()
+{
+
+}
+bool ServerGameLoop::Init(string args)
 {
     cout<<"Init..."<<endl;
+    return true;
 }
 
 void ServerGameLoop::Shutdown()

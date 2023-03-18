@@ -1,10 +1,12 @@
 #ifndef IGameLoop_H
 #define IGameLoop_H
 #include <string>
+
+using namespace std;
 class IGameLoop
 {
 public:
-	virtual bool Init(std::string args[])=0;
+	virtual bool Init(string args)=0;
 	virtual void Shutdown() = 0;
 	virtual void Update() = 0;
 	virtual void FixedUpdate() = 0;
