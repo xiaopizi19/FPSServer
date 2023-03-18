@@ -19,8 +19,8 @@ int main()
 	{
 		current_time = chrono::high_resolution_clock::now();
 		auto loop_duration = chrono::duration_cast<chrono::milliseconds>(current_time - last_time).count();
-		cout<<"Loop:"<<loop_count<< "loop_duation:"<<loop_duration<<"ms"<<endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		//cout<<"Loop:"<<loop_count<< "loop_duation:"<<loop_duration<<"ms"<<endl;
+		//std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		auto total_end = chrono::high_resolution_clock::now();
 		total_duration = chrono::duration_cast<chrono::seconds>(total_end - total_start).count();
 		if(total_duration > 10)
