@@ -1,34 +1,38 @@
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
+#include <chrono>
 #include <string.h>
+#include <thread>
 #include "StateMachine.h"
 using namespace std;
-#define MY_TIMEV struct timeval
-MY_TIMEV clockGetTime(clockid_t _tclock_id)
-{
-	struct timespec stTime;
-	clock_gettime(_tclock_id, &stTime);
-	MY_TIMEV stRet;
-	stRet.tv_sec = stTime.tv_sec;
-	stRet.tv_usec = stTime.tv_nsec/1000;
-	return stRet;
-}
+
 int main()
 {
-	cout<<"Begin..."<<endl;
-	MY_TIMEV tmp = {0};
-	int timeOffset = 0;
-	int timeOffset1 = 0;
-	tmp = clockGetTime(CLOCK_MONOTONIC);
-	timeOffset = tmp.tv_sec*1000+tmp.tv_usec/1000;
-	memset(&tmp,0,sizeof(tmp));
-	tmp = clockGetTime(CLOCK_MONOTONIC);
-	timeOffset1 = tmp.tv_sec*1000+tmp.tv_usec/1000;
-	cout<<timeOffset1 - timeOffset<<endl;
-        
+	cout<<"GameServerBegin..."<<endl;
+	int loop_count = 0;
+	auto total_duration = 0;
+	auto current_time = chrono::high_resolution_clock::now();
+	auto last_time = chrono::high_resolution_clock::now();
+	auto total_start = chrono::high_resolution_clock::now();
+	bool isAbort = false;
+
+	while(!isAbort)
+	{
+		current_time = chrono::high_resolution_clock::now();
+		auto loop_duration = chrono::duration_cast<chrono::milliseconds>(current_time - last_time).count();
+		cout<<"Loop:"<<loop_count<< "loop_duation:"<<loop_duration<<"ms"<<endl;
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		auto total_end = chrono::high_resolution_clock::now();
+		total_duration = chrono::duration_cast<chrono::seconds>(total_end - total_start).count();
+		if(total_duration > 10)
+			break;
+		loop_count++;
+		last_time = current_time;
+	}
+	auto total_end = chrono::high_resolution_clock::now();
+	total_duration = chrono::duration_cast<chrono::seconds>(total_end-total_start).count();
+	cout<<"Total duration::"<<total_duration<<"s"<<endl;
 	
+
+	cout<<"GameServerEnd..."<<endl;
 	return 0;
 }
