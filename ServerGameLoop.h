@@ -11,7 +11,7 @@ class ServerGameLoop : public IGameLoop
 public:
 	bool Init(string args);
 	void Shutdown();
-	void Update();
+	void Update(double accFrameTime);
 	void FixedUpdate();
 	void LateUpdate();
 	~ServerGameLoop();

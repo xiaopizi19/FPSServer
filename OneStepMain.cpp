@@ -24,11 +24,10 @@ int main()
 		//cout<<"Loop:"<<loop_count<< "loop_duation:"<<loop_duration<<"ms"<<endl;
 		//std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		if(!server)
-			server->Update();
+			server->Update(total_duration);
 		auto total_end = chrono::high_resolution_clock::now();
 		total_duration = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
-		cout<<"Acc duration::"<<total_duration<<"ms"<<endl;
-		if(total_duration > 100*1000)
+		if(total_duration > 35 * 1000)
 			break;
 		loop_count++;
 		last_time = current_time;

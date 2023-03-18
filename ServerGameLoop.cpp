@@ -8,6 +8,9 @@ ServerGameLoop::~ServerGameLoop()
 bool ServerGameLoop::Init(string args)
 {
     cout<<"Init..."<<endl;
+    m_sm.Add(ServerState::Idle, &EnterIdleState, &UpdateIdleState,&LeaveIdleState);
+    m_sm.Add(ServerState::Loading,&EnterLoadingState,&UpdateLoadingState,&LeaveLoadingState);
+    m_sm.Add(ServerState::Active,&EnterActiveState,&UpdateActiveState,&LeaveActiveState);
     return true;
 }
 
@@ -16,9 +19,22 @@ void ServerGameLoop::Shutdown()
 	
 }
 
-void ServerGameLoop::Update()
+void ServerGameLoop::Update(double accFrameTime)
 {
-
+    if(accFrameTime > 10 * 1000)
+    {
+        m_sm.SwitchTo(ServerState::Idle);
+        m_sm.Update();
+    }else if(accFrameTime > 20 * 1000)
+    {
+        m_sm.SwitchTo(ServerState::Loading);
+        m_sm.Update();
+    }else if(accFrameTime > 30 * 1000)
+    {
+        m_sm.SwitchTo(ServerState::Active);
+        m_sm.Update();
+        m_sm.ShutDown();
+    }
 }
 
 void ServerGameLoop::FixedUpdate()

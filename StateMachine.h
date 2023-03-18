@@ -1,8 +1,12 @@
-#include<iostream>
-#include<functional>
-#include<unordered_map>
-#include<string>
+#include <iostream>
+#include <functional>
+#include <unordered_map>
+#include <string>
+#include <memory>
+#include "ServerGameLoop.h"
+
 using namespace std;
+typedef void (ServerGameLoop::*StateFunction)();
 
 enum class ServerState {Idle, Loading, Active};
 
@@ -10,8 +14,8 @@ template <typename T>
 class StateMachine
 {
 public:
-	using StateFunc = std::function<void()>;
-	void Add(T id, StateFunc enter, StateFunc update, StateFunc leave)
+	using StateFunc = function<void()>;
+	void Add(T id, StateFunction  enter, StateFunction  update, StateFunction  leave)
 	{
 		m_States.emplace(id,State{id, enter, update, leave});
 	}
@@ -50,11 +54,12 @@ public:
 		m_CurrentState = newState;
 	}
 private:
-	struct State{
+	struct State
+	{
 		T Id;
-		StateFunc Enter;
-		StateFunc Update;
-		StateFunc Leave;
+		StateFunction  Enter;
+		StateFunction  Update;
+		StateFunction  Leave;
 	};
 	State* m_CurrentState = nullptr;
 	std::unordered_map<T, State> m_States;
