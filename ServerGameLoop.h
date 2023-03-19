@@ -28,6 +28,14 @@ private:
 	void UpdateActiveState();
 	void LeaveActiveState();	
 private:
-	StateMachine<ServerState> m_sm;
+	// Statemachine
+    enum class ServerState
+    {
+        Idle,
+        Loading,
+        Active,
+    };
+    StateMachine<ServerState> m_StateMachine;
+
 };
 #endif

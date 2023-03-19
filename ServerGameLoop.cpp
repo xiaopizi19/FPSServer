@@ -1,6 +1,5 @@
 #include "ServerGameLoop.h"
 
-
 ServerGameLoop::~ServerGameLoop()
 {
 
@@ -8,9 +7,16 @@ ServerGameLoop::~ServerGameLoop()
 bool ServerGameLoop::Init(string args)
 {
     cout<<"Init..."<<endl;
-    m_sm.Add(ServerState::Idle, &EnterIdleState, &UpdateIdleState,&LeaveIdleState);
-    m_sm.Add(ServerState::Loading,&EnterLoadingState,&UpdateLoadingState,&LeaveLoadingState);
-    m_sm.Add(ServerState::Active,&EnterActiveState,&UpdateActiveState,&LeaveActiveState);
+    m_StateMachine.Add(ServerState::Idle, std::bind(&ServerGameLoop::EnterIdleState, this),
+     std::bind(&ServerGameLoop::UpdateIdleState, this), 
+    std::bind(&ServerGameLoop::LeaveIdleState, this));
+    m_StateMachine.Add(ServerState::Loading,std::bind(&ServerGameLoop::EnterLoadingState, 
+    this), std::bind(&ServerGameLoop::UpdateLoadingState, this), 
+    std::bind(&ServerGameLoop::LeaveActiveState, this));
+    m_StateMachine.Add(ServerState::Loading,std::bind(&ServerGameLoop::EnterActiveState, 
+    this), std::bind(&ServerGameLoop::UpdateActiveState, this), 
+    std::bind(&ServerGameLoop::LeaveActiveState, this));
+    
     return true;
 }
 
@@ -23,17 +29,16 @@ void ServerGameLoop::Update(double accFrameTime)
 {
     if(accFrameTime > 10 * 1000)
     {
-        m_sm.SwitchTo(ServerState::Idle);
-        m_sm.Update();
+        m_StateMachine.SwitchTo(ServerState::Idle);
+        m_StateMachine.Update();
     }else if(accFrameTime > 20 * 1000)
     {
-        m_sm.SwitchTo(ServerState::Loading);
-        m_sm.Update();
+        m_StateMachine.SwitchTo(ServerState::Loading);
+        m_StateMachine.Update();
     }else if(accFrameTime > 30 * 1000)
     {
-        m_sm.SwitchTo(ServerState::Active);
-        m_sm.Update();
-        m_sm.ShutDown();
+        m_StateMachine.SwitchTo(ServerState::Active);
+        m_StateMachine.Update();
     }
 }
 
