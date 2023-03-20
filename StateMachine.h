@@ -33,7 +33,7 @@ public:
     void SwitchTo(T state)
     {
         assert(m_States.count(state) > 0 && "Trying to switch to unknown state");
-        assert(m_CurrentState.Id != state && "Trying to switch to state that is already current");
+        //assert(m_CurrentState.Id != state && "Trying to switch to state that is already current");
 
         const auto& newState = m_States[state];
         if (m_CurrentState.Leave != nullptr)

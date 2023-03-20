@@ -12,8 +12,8 @@ bool ServerGameLoop::Init(string args)
     std::bind(&ServerGameLoop::LeaveIdleState, this));
     m_StateMachine.Add(ServerState::Loading,std::bind(&ServerGameLoop::EnterLoadingState, 
     this), std::bind(&ServerGameLoop::UpdateLoadingState, this), 
-    std::bind(&ServerGameLoop::LeaveActiveState, this));
-    m_StateMachine.Add(ServerState::Loading,std::bind(&ServerGameLoop::EnterActiveState, 
+    std::bind(&ServerGameLoop::LeaveLoadingState, this));
+    m_StateMachine.Add(ServerState::Active,std::bind(&ServerGameLoop::EnterActiveState, 
     this), std::bind(&ServerGameLoop::UpdateActiveState, this), 
     std::bind(&ServerGameLoop::LeaveActiveState, this));
     
