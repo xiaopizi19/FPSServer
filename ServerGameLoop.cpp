@@ -32,6 +32,7 @@ void ServerGameLoop::Update(double accFrameTime)
     {
         if((ServerState)m_StateMachine.CurrentState() == ServerState::Loading)
             return;
+        cout<<"ServerGameLoop:"<<accFrameTime<<endl;
         m_StateMachine.SwitchTo(ServerState::Loading);
         m_StateMachine.Update();
     }

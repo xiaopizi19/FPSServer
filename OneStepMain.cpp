@@ -9,6 +9,7 @@ int main()
 {
 	cout<<"GameServerBegin..."<<endl;
 	int loop_count = 0;
+	int loop_accSeconds = 0;
 	auto total_duration = 0;
 	auto current_time = chrono::high_resolution_clock::now();
 	auto last_time = chrono::high_resolution_clock::now();
@@ -19,10 +20,14 @@ int main()
 	server->Init(ip); 
 	while(!isAbort)
 	{
-		//current_time = chrono::high_resolution_clock::now();
-		//auto loop_duration = chrono::duration_cast<chrono::milliseconds>(current_time - last_time).count();
-		//cout<<"Loop:"<<loop_count<< "loop_duation:"<<loop_duration<<"ms"<<endl;
-		//std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		current_time = chrono::high_resolution_clock::now();
+		auto loop_duration = chrono::duration_cast<chrono::milliseconds>(current_time - last_time).count();
+		loop_accSeconds += loop_duration;
+		if(loop_accSeconds > 1 * 1000)
+		{
+			cout<<"Loop:"<<loop_count<< "loop_duation:"<<loop_accSeconds<<"ms"<<endl;
+			loop_accSeconds = 0;
+		}
 		if(server)
 			server->Update(total_duration);
 		auto total_end = chrono::high_resolution_clock::now();
