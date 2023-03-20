@@ -16,28 +16,23 @@ bool ServerGameLoop::Init(string args)
     m_StateMachine.Add(ServerState::Active,std::bind(&ServerGameLoop::EnterActiveState, 
     this), std::bind(&ServerGameLoop::UpdateActiveState, this), 
     std::bind(&ServerGameLoop::LeaveActiveState, this));
-    
+    m_StateMachine.SwitchTo(ServerState::Idle);
+    m_StateMachine.Update();
     return true;
 }
 
 void ServerGameLoop::Shutdown()
 {
-	
+	m_StateMachine.Shutdown();
 }
 
 void ServerGameLoop::Update(double accFrameTime)
 {
-    if(accFrameTime > 10 * 1000)
+    if(accFrameTime > 5 * 1000)
     {
-        m_StateMachine.SwitchTo(ServerState::Idle);
-        m_StateMachine.Update();
-    }else if(accFrameTime > 20 * 1000)
-    {
+        if((ServerState)m_StateMachine.CurrentState() == ServerState::Loading)
+            return;
         m_StateMachine.SwitchTo(ServerState::Loading);
-        m_StateMachine.Update();
-    }else if(accFrameTime > 30 * 1000)
-    {
-        m_StateMachine.SwitchTo(ServerState::Active);
         m_StateMachine.Update();
     }
 }

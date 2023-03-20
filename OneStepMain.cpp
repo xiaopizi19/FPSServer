@@ -27,8 +27,11 @@ int main()
 			server->Update(total_duration);
 		auto total_end = chrono::high_resolution_clock::now();
 		total_duration = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
-		if(total_duration > 35 * 1000)
+		if(total_duration > 10 * 1000)
+		{
+			server->Shutdown();
 			break;
+		}
 		loop_count++;
 		last_time = current_time;
 	}
