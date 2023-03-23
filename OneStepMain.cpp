@@ -21,7 +21,8 @@ int main()
 	while(!isAbort)
 	{
 		loop_end = chrono::high_resolution_clock::now();
-		auto loop_duration = chrono::duration_cast<chrono::milliseconds>(loop_end - loop_start).count();
+		auto loop_duration = chrono::duration_cast<chrono::milliseconds>(loop_end 
+		- loop_start).count();
 		if(loop_duration > 16)
 		{
 			cout<<"Loop:"<<loop_count<< "loop_duation:"<<loop_duration<<"ms"<<endl;
@@ -31,7 +32,8 @@ int main()
 		}
 		
 		auto total_end = chrono::high_resolution_clock::now();
-		total_duration = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
+		total_duration = chrono::duration_cast<chrono::milliseconds>(total_end 
+		- total_start).count();
 		if(total_duration > 10 * 1000)
 		{
 			server->Shutdown();
