@@ -10,7 +10,12 @@ union UIntFloat
 	double doubleValue;
 	uint64_t longValue;
 };
-
+struct StreamData
+{
+	char* buffer;
+	int length;
+	int position;
+};
 class DataStreamWriter
 {
 public:
@@ -45,7 +50,7 @@ public:
 		void Update(T value)
 		{
 			*m_value = value;
-			std::memcpy(m_writer->buffer + position, m_value, m_size);
+			std::memcpy(m_writer->buffer + m_position, m_value, m_size);
 			m_writer->position += m_size;
 		}
 	private:
@@ -119,24 +124,18 @@ public:
 		return m_writer != nullptr;
 	}
 private:
-	struct StreamData
-	{
-		char* buffer;
-		int length;
-		int position;
-	};
 	StreamData* m_writer;
 };
 class DataStreamReader
 {
 	struct Context
 	{
-		int char* buffer;
+		char* buffer;
 		size_t offset;
 		size_t length;
 	} context;
 
-	DataStreamReader(const char* buffer, int offset, int length)
+	DataStreamReader(char* buffer, int offset, int length)
 	{
 		if(offset + length > std::strlen(buffer))
 		{
@@ -177,7 +176,7 @@ class DataStreamReader
 	float ReadFloat()
 	{
 		UIntFloat value;
-		ReadBytes(reinterpret_cast<char*>(&value.uintvalue), sizeof(value.uintValue));
+		ReadBytes(reinterpret_cast<char*>(&value.intValue), sizeof(value.intValue));
 		return value.floatValue;
 	}
 	char ReadNetworkByte()
@@ -187,7 +186,7 @@ class DataStreamReader
 	short ReadNetworkShort()
 	{
 		short value = ReadShort();
-		return (value << 8) | ((value >> 8 & 0xFF;
+		return (value << 8) | ((value >> 8) & 0xFF);
 	}
 	int ReadNetworkInt()
 	{

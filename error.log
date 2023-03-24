@@ -1,42 +1,38 @@
-DataStream.h:52:3: error: ‘StreamData’ does not name a type; did you mean ‘renameat2’?
-   StreamData* m_writer;
-   ^~~~~~~~~~
-   renameat2
 DataStream.h: In member function ‘void DataStreamWriter::Deferred<T>::Update(T)’:
-DataStream.h:48:35: error: ‘position’ was not declared in this scope
+DataStream.h:53:35: error: ‘position’ was not declared in this scope
     std::memcpy(m_writer->buffer + position, m_value, m_size);
                                    ^~~~~~~~
-DataStream.h:48:35: note: suggested alternative: ‘m_position’
+DataStream.h:53:35: note: suggested alternative: ‘m_position’
     std::memcpy(m_writer->buffer + position, m_value, m_size);
                                    ^~~~~~~~
                                    m_position
 DataStream.h: At global scope:
-DataStream.h:134:13: error: two or more data types in declaration of ‘buffer’
+DataStream.h:133:13: error: two or more data types in declaration of ‘buffer’
    int char* buffer;
              ^~~~~~
 DataStream.h: In constructor ‘DataStreamReader::DataStreamReader(const char*, int, int)’:
-DataStream.h:145:11: error: ‘struct DataStreamReader::Context’ has no member named ‘buffer’
+DataStream.h:144:11: error: ‘struct DataStreamReader::Context’ has no member named ‘buffer’
    context.buffer = buffer;
            ^~~~~~
 DataStream.h: In member function ‘void DataStreamReader::ReadBytes(char*, size_t)’:
-DataStream.h:155:29: error: ‘struct DataStreamReader::Context’ has no member named ‘buffer’
+DataStream.h:154:29: error: ‘struct DataStreamReader::Context’ has no member named ‘buffer’
    std::memcpy(dest, context.buffer + context.offset, count);
                              ^~~~~~
 DataStream.h: In member function ‘float DataStreamReader::ReadFloat()’:
-DataStream.h:180:44: error: ‘union UIntFloat’ has no member named ‘uintvalue’; did you mean ‘intValue’?
+DataStream.h:179:44: error: ‘union UIntFloat’ has no member named ‘uintvalue’; did you mean ‘intValue’?
    ReadBytes(reinterpret_cast<char*>(&value.uintvalue), sizeof(value.uintValue));
                                             ^~~~~~~~~
                                             intValue
-DataStream.h:180:69: error: ‘union UIntFloat’ has no member named ‘uintValue’; did you mean ‘intValue’?
+DataStream.h:179:69: error: ‘union UIntFloat’ has no member named ‘uintValue’; did you mean ‘intValue’?
    ReadBytes(reinterpret_cast<char*>(&value.uintvalue), sizeof(value.uintValue));
                                                                      ^~~~~~~~~
                                                                      intValue
 DataStream.h: In member function ‘short int DataStreamReader::ReadNetworkShort()’:
-DataStream.h:190:44: error: expected ‘)’ before ‘;’ token
+DataStream.h:189:44: error: expected ‘)’ before ‘;’ token
    return (value << 8) | ((value >> 8 & 0xFF;
                           ~                 ^
                                             )
-DataStream.h:190:44: error: expected ‘)’ before ‘;’ token
+DataStream.h:189:44: error: expected ‘)’ before ‘;’ token
    return (value << 8) | ((value >> 8 & 0xFF;
                          ~                  ^
                                             )
