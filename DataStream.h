@@ -30,7 +30,7 @@ public:
 	template<typename T>
 	struct Deferred
 	{
-		Deferred(DataStreamWritrer* writer, int size)
+		Deferred(DataStreamWriter* writer, int size)
 		{
 			m_writer = writer->m_writer;
 			m_position = m_writer->position;
@@ -119,7 +119,7 @@ public:
 		return m_writer != nullptr;
 	}
 private:
-	Struct StreamData
+	struct StreamData
 	{
 		char* buffer;
 		int length;
