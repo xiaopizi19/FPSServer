@@ -1,0 +1,215 @@
+DataStream.h:33:29: error: expected ‘)’ before ‘*’ token
+   Deferred(DataStreamWritrer* writer, int size)
+           ~                 ^
+                             )
+DataStream.h:52:3: error: ‘StreamData’ does not name a type; did you mean ‘renameat2’?
+   StreamData* m_writer;
+   ^~~~~~~~~~
+   renameat2
+DataStream.h:122:2: error: ‘Struct’ does not name a type; did you mean ‘struct’?
+  Struct StreamData
+  ^~~~~~
+  struct
+DataStream.h:128:2: error: ‘StreamData’ does not name a type; did you mean ‘renameat2’?
+  StreamData* m_writer;
+  ^~~~~~~~~~
+  renameat2
+DataStream.h: In constructor ‘DataStreamWriter::DataStreamWriter(int)’:
+DataStream.h:19:3: error: ‘m_writer’ was not declared in this scope
+   m_writer = new StreamData();
+   ^~~~~~~~
+DataStream.h:19:3: note: suggested alternative: ‘fwrite’
+   m_writer = new StreamData();
+   ^~~~~~~~
+   fwrite
+DataStream.h:19:18: error: expected type-specifier before ‘StreamData’
+   m_writer = new StreamData();
+                  ^~~~~~~~~~
+DataStream.h: In destructor ‘DataStreamWriter::~DataStreamWriter()’:
+DataStream.h:26:12: error: ‘m_writer’ was not declared in this scope
+   delete[] m_writer->buffer;
+            ^~~~~~~~
+DataStream.h:26:12: note: suggested alternative: ‘fwrite’
+   delete[] m_writer->buffer;
+            ^~~~~~~~
+            fwrite
+DataStream.h:27:10: error: type ‘<type error>’ argument given to ‘delete’, expected pointer
+   delete m_writer;
+          ^~~~~~~~
+DataStream.h: In member function ‘void DataStreamWriter::Deferred<T>::Update(T)’:
+DataStream.h:48:16: error: ‘m_writer’ was not declared in this scope
+    std::memcpy(m_writer->buffer + position, m_value, m_size);
+                ^~~~~~~~
+DataStream.h:48:16: note: suggested alternative: ‘fwrite’
+    std::memcpy(m_writer->buffer + position, m_value, m_size);
+                ^~~~~~~~
+                fwrite
+DataStream.h:48:35: error: ‘position’ was not declared in this scope
+    std::memcpy(m_writer->buffer + position, m_value, m_size);
+                                   ^~~~~~~~
+DataStream.h:48:35: note: suggested alternative: ‘m_position’
+    std::memcpy(m_writer->buffer + position, m_value, m_size);
+                                   ^~~~~~~~
+                                   m_position
+DataStream.h: In member function ‘void DataStreamWriter::Write(char)’:
+DataStream.h:62:3: error: ‘m_writer’ was not declared in this scope
+   m_writer->buffer[m_writer->position++] = value;
+   ^~~~~~~~
+DataStream.h:62:3: note: suggested alternative: ‘fwrite’
+   m_writer->buffer[m_writer->position++] = value;
+   ^~~~~~~~
+   fwrite
+DataStream.h: In member function ‘void DataStreamWriter::Write(short int)’:
+DataStream.h:66:38: error: no matching function for call to ‘DataStreamWriter::Deferred<short int>::Deferred(DataStreamWriter*, long unsigned int)’
+   Deferred<short>(this, sizeof(short)).Update(value);
+                                      ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<short int>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<short int>::Deferred(const DataStreamWriter::Deferred<short int>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::Write(short unsigned int)’:
+DataStream.h:70:56: error: no matching function for call to ‘DataStreamWriter::Deferred<short unsigned int>::Deferred(DataStreamWriter*, long unsigned int)’
+   Deferred<unsigned short>(this, sizeof(unsigned short)).Update(value);
+                                                        ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<short unsigned int>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<short unsigned int>::Deferred(const DataStreamWriter::Deferred<short unsigned int>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::Write(int)’:
+DataStream.h:74:34: error: no matching function for call to ‘DataStreamWriter::Deferred<int>::Deferred(DataStreamWriter*, long unsigned int)’
+   Deferred<int>(this, sizeof(int)).Update(value);
+                                  ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<int>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<int>::Deferred(const DataStreamWriter::Deferred<int>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::Write(unsigned int)’:
+DataStream.h:78:52: error: no matching function for call to ‘DataStreamWriter::Deferred<unsigned int>::Deferred(DataStreamWriter*, long unsigned int)’
+   Deferred<unsigned int>(this, sizeof(unsigned int)).Update(value);
+                                                    ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<unsigned int>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<unsigned int>::Deferred(const DataStreamWriter::Deferred<unsigned int>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::Write(float)’:
+DataStream.h:82:38: error: no matching function for call to ‘DataStreamWriter::Deferred<float>::Deferred(DataStreamWriter*, long unsigned int)’
+   Deferred<float>(this, sizeof(float)).Update(value);
+                                      ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<float>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<float>::Deferred(const DataStreamWriter::Deferred<float>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::WriteNetworkByteOrder(short int)’:
+DataStream.h:86:54: error: no matching function for call to ‘DataStreamWriter::Deferred<short int>::Deferred(DataStreamWriter*, long unsigned int)’
+   DeferredNetworkByteOrder<short>(this, sizeof(short)).Update(value);
+                                                      ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<short int>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<short int>::Deferred(const DataStreamWriter::Deferred<short int>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::WriteNetworkByteOrder(short unsigned int)’:
+DataStream.h:91:72: error: no matching function for call to ‘DataStreamWriter::Deferred<short unsigned int>::Deferred(DataStreamWriter*, long unsigned int)’
+   DeferredNetworkByteOrder<unsigned short>(this, sizeof(unsigned short)).Update(value);
+                                                                        ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<short unsigned int>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<short unsigned int>::Deferred(const DataStreamWriter::Deferred<short unsigned int>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::WriteNetworkBtyeOrder(int)’:
+DataStream.h:96:50: error: no matching function for call to ‘DataStreamWriter::Deferred<int>::Deferred(DataStreamWriter*, long unsigned int)’
+   DeferredNetworkByteOrder<int>(this, sizeof(int)).Update(value);
+                                                  ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<int>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<int>::Deferred(const DataStreamWriter::Deferred<int>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::WriteNetworkByteOrder(unsigned int)’:
+DataStream.h:100:68: error: no matching function for call to ‘DataStreamWriter::Deferred<unsigned int>::Deferred(DataStreamWriter*, long unsigned int)’
+   DeferredNetworkByteOrder<unsigned int>(this, sizeof(unsigned int)).Update(value);
+                                                                    ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<unsigned int>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<unsigned int>::Deferred(const DataStreamWriter::Deferred<unsigned int>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘void DataStreamWriter::WriteNetworkByteOrder(float)’:
+DataStream.h:104:54: error: no matching function for call to ‘DataStreamWriter::Deferred<float>::Deferred(DataStreamWriter*, long unsigned int)’
+   DeferredNetworkByteOrder<float>(this, sizeof(float)).Update(value);
+                                                      ^
+DataStream.h:31:9: note: candidate: ‘DataStreamWriter::Deferred<float>::Deferred()’
+  struct Deferred
+         ^~~~~~~~
+DataStream.h:31:9: note:   candidate expects 0 arguments, 2 provided
+DataStream.h:31:9: note: candidate: ‘constexpr DataStreamWriter::Deferred<float>::Deferred(const DataStreamWriter::Deferred<float>&)’
+DataStream.h:31:9: note:   candidate expects 1 argument, 2 provided
+DataStream.h: In member function ‘int DataStreamWriter::GetCapacity()’:
+DataStream.h:108:10: error: ‘m_writer’ was not declared in this scope
+   return m_writer->length;
+          ^~~~~~~~
+DataStream.h:108:10: note: suggested alternative: ‘fwrite’
+   return m_writer->length;
+          ^~~~~~~~
+          fwrite
+DataStream.h: In member function ‘void DataStreamWriter::SetCapacity(int)’:
+DataStream.h:113:26: error: ‘m_writer’ was not declared in this scope
+   std::memcpy(newBuffer, m_writer->buffer, std::min(m_writer->length, capacity));
+                          ^~~~~~~~
+DataStream.h:113:26: note: suggested alternative: ‘fwrite’
+   std::memcpy(newBuffer, m_writer->buffer, std::min(m_writer->length, capacity));
+                          ^~~~~~~~
+                          fwrite
+DataStream.h: In member function ‘bool DataStreamWriter::IsCreated()’:
+DataStream.h:119:10: error: ‘m_writer’ was not declared in this scope
+   return m_writer != nullptr;
+          ^~~~~~~~
+DataStream.h:119:10: note: suggested alternative: ‘fwrite’
+   return m_writer != nullptr;
+          ^~~~~~~~
+          fwrite
+DataStream.h: At global scope:
+DataStream.h:134:13: error: two or more data types in declaration of ‘buffer’
+   int char* buffer;
+             ^~~~~~
+DataStream.h: In constructor ‘DataStreamReader::DataStreamReader(const char*, int, int)’:
+DataStream.h:145:11: error: ‘struct DataStreamReader::Context’ has no member named ‘buffer’
+   context.buffer = buffer;
+           ^~~~~~
+DataStream.h: In member function ‘void DataStreamReader::ReadBytes(char*, size_t)’:
+DataStream.h:155:29: error: ‘struct DataStreamReader::Context’ has no member named ‘buffer’
+   std::memcpy(dest, context.buffer + context.offset, count);
+                             ^~~~~~
+DataStream.h: In member function ‘float DataStreamReader::ReadFloat()’:
+DataStream.h:180:44: error: ‘union UIntFloat’ has no member named ‘uintvalue’; did you mean ‘intValue’?
+   ReadBytes(reinterpret_cast<char*>(&value.uintvalue), sizeof(value.uintValue));
+                                            ^~~~~~~~~
+                                            intValue
+DataStream.h:180:69: error: ‘union UIntFloat’ has no member named ‘uintValue’; did you mean ‘intValue’?
+   ReadBytes(reinterpret_cast<char*>(&value.uintvalue), sizeof(value.uintValue));
+                                                                     ^~~~~~~~~
+                                                                     intValue
+DataStream.h: In member function ‘short int DataStreamReader::ReadNetworkShort()’:
+DataStream.h:190:44: error: expected ‘)’ before ‘;’ token
+   return (value << 8) | ((value >> 8 & 0xFF;
+                          ~                 ^
+                                            )
+DataStream.h:190:44: error: expected ‘)’ before ‘;’ token
+   return (value << 8) | ((value >> 8 & 0xFF;
+                         ~                  ^
+                                            )
