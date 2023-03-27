@@ -23,6 +23,20 @@ struct NetworkEndPoint
 	uint16_t port;
 };
 
+class NetworkConnection
+{
+public:
+	NetworkConnection(uint32_t id) : m_Id(id), m_State(ConnectionState::Disconnected){}
+	uint32_t GetId() const {return m_Id;}
+	ConnectionState GetState() const {return m_State;}
+	void SetState(ConnectionState state){m_State = state;}
+	NetworkEndPoint GetRemoteEndpoint() const {return m_RemoteEndPoint;}
+	void SetRemoteEndPoint(NetworkEndPoint endPoint) {m_RemoteEndPoint = endPoint;}
+private:
+	uint32_t m_Id;
+	ConnectionState m_State;
+	NetworkEndPoint m_RemoteEndPoint;
+};
 class NetworkEvent
 {
 public:
@@ -45,20 +59,6 @@ private:
 
 };
 
-class NetworkConnection
-{
-public:
-	NetworkConnection(uint32_t id) : m_Id(id), m_State(ConnectionState::Disconnected){}
-	uint32_t GetId() const {return m_Id;}
-	ConnectionState GetState() const {return m_State;}
-	void SetState(ConnectionState state){m_State = state;}
-	NetworkEndPoint GetRemoteEndpoint() const {return m_RemoteEndPoint;}
-	void SetRemoteEndPoint(NetworkEndPoint endPoint) {m_RemoteEndPoint = endPoint;}
-private:
-	uint32_t m_Id;
-	ConnectionState m_State;
-	NetworkEndPoint m_RemoteEndPoint;
-};
 
 class INetworkDriver
 {
